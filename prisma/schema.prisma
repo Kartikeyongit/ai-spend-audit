@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Audit {
+  id                String   @id @default(cuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  publicId          String   @unique // for shareable URL
+  
+  // Spend Input
+  tools             Json     // array of tool selections
+  teamSize          Int
+  primaryUseCase    String
+  totalMonthlySpend Float
+  
+  // Audit Results
+  totalMonthlySavings Float
+  totalAnnualSavings  Float
+  recommendations     Json     // per-tool breakdown
+  aiSummary           String?
+  
+  // Lead Capture (private)
+  email             String?
+  companyName       String?
+  role              String?
+  capturedAt        DateTime?
+
+  // Relation back to Lead
+  leads             Lead[]
+}
+
+model Lead {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  email         String   @unique
+  companyName   String?
+  role          String?
+  teamSize      Int?
+  auditId       String?
+  audit         Audit?   @relation(fields: [auditId], references: [id])
+  highSavings   Boolean  @default(false)
+  notified      Boolean  @default(false)
+}
