@@ -58,3 +58,35 @@
 - Integrate Anthropic API for AI-generated summaries
 - Write PROMPTS.md with full prompt documentation
 - Begin GTM.md and ECONOMICS.md
+
+---
+
+**Day 3 — 2026-05-08**
+
+**Hours worked:** 4
+
+**What I did:**
+- Integrated Anthropic Claude API (3.5 Haiku) for AI-generated audit summaries
+- Built fallback system: template summaries when API is unavailable, rate limited, or errors
+- Created structured prompt with explicit constraints to prevent hallucination
+- Wrote PROMPTS.md documenting the full prompt, rationale, and what didn't work
+- Added AI summary to audit API route — non-blocking, graceful degradation
+- Created .env.example for onboarding
+- Sent outreach messages to 5 potential interview subjects on X and Indie Hackers
+- [If done any interviews] Conducted [X] user interviews — notes in USER_INTERVIEWS.md
+
+**What I learned:**
+- Claude 3.5 Haiku follows word-count constraints more precisely than GPT-4o for short summaries
+- System prompt with "only reference provided information" is critical — without it, Claude occasionally invented industry benchmarks
+- Temperature 0 was too robotic; 0.7 gives natural variety while the structured prompt keeps it factual
+- The Anthropic SDK fails gracefully — wrapping in try/catch with template fallback means users never see errors
+
+**Blockers / what I'm stuck on:**
+- Waiting on interview responses — cold outreach takes time. Following up tomorrow.
+- Anthropic free credits approved — API key active and working.
+
+**Plan for tomorrow:**
+- Complete all 3 user interviews
+- Write USER_INTERVIEWS.md
+- Set up Resend for transactional emails
+- Begin GTM.md and ECONOMICS.md

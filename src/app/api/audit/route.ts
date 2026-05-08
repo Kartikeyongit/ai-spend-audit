@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { runAudit, UserTool } from "@/lib/audit-engine";
+import { generateAISummary } from "@/lib/ai-summary";
 import { randomUUID } from "crypto";
 
 const prisma = new PrismaClient();
@@ -18,6 +19,21 @@ export async function POST(request: NextRequest) {
 
     const auditResult = runAudit(userTools, teamSize || 1, primaryUseCase || "coding");
 
+    // Generate AI summary (fires and forgets — won't block if API fails)
+    let aiSummary: string | null = null;
+    try {
+      aiSummary = await generateAISummary({
+        tools: userTools,
+        teamSize: teamSize || 1,
+        primaryUseCase: primaryUseCase || "coding",
+        totalMonthlySavings: auditResult.totalMonthlySavings,
+        totalAnnualSavings: auditResult.totalAnnualSavings,
+        recommendations: auditResult.recommendations,
+      });
+    } catch (e) {
+      console.error("AI summary generation failed, using fallback:", e);
+    }
+
     // Generate a unique public ID for sharing
     const publicId = randomUUID().slice(0, 8);
 
@@ -32,12 +48,14 @@ export async function POST(request: NextRequest) {
         totalMonthlySavings: auditResult.totalMonthlySavings,
         totalAnnualSavings: auditResult.totalAnnualSavings,
         recommendations: JSON.parse(JSON.stringify(auditResult.recommendations)),
+        aiSummary: aiSummary,
       }
     });
 
     return NextResponse.json({
       publicId: audit.publicId,
-      ...auditResult
+      ...auditResult,
+      aiSummary,
     });
   } catch (error) {
     console.error("Audit error:", error);
