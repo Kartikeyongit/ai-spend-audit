@@ -35,7 +35,7 @@ Built as a lead-generation tool for [Credex](https://credex.rocks) — users wit
 
 ### Setup
 
-\`\`\`bash
+```
 # Clone the repo
 git clone https://github.com/YOUR_USERNAME/ai-spend-audit.git
 cd ai-spend-audit
@@ -52,25 +52,25 @@ npx prisma migrate dev
 
 # Start dev server
 npm run dev
-\`\`\`
+```
 
 ### Environment Variables
 
-\`\`\`env
+```
 DATABASE_URL="postgresql://user:password@localhost:5432/ai_spend_audit"
 ANTHROPIC_API_KEY="sk-ant-..."
 RESEND_API_KEY="re_..."
-\`\`\`
+```
 
 ### Running Tests
 
-\`\`\`bash
+```
 npm test
-\`\`\`
+```
 
 ## Project Structure
 
-\`\`\`
+```
 src/
   app/
     page.tsx                    # Spend input form
@@ -100,7 +100,7 @@ docs/                           # All assignment documentation
   LANDING_COPY.md
   METRICS.md
   PROMPTS.md
-\`\`\`
+```
 
 ## Key Decisions
 
