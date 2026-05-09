@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { sendAuditConfirmationEmail } from "@/lib/email";
 
 const prisma = new PrismaClient();
 
@@ -12,13 +13,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Email required" }, { status: 400 });
     }
 
-    // Rate limit check (simple — by IP in production you'd use Upstash)
-    // For now, just check for duplicate emails within 1 hour
+    // Rate limit check — duplicate emails within 1 hour
     const recentLead = await prisma.lead.findFirst({
       where: {
         email,
         createdAt: {
-          gte: new Date(Date.now() - 60 * 60 * 1000) // last hour
+          gte: new Date(Date.now() - 60 * 60 * 1000)
         }
       }
     });
@@ -28,23 +28,25 @@ export async function POST(request: NextRequest) {
     }
 
     // Update the audit with email capture
-    if (publicId) {
-      await prisma.audit.update({
-        where: { publicId },
-        data: {
-          email,
-          companyName,
-          role,
-          capturedAt: new Date()
-        }
-      });
-    }
-
-    // Check if high savings
     let highSavings = false;
+    let totalMonthlySavings = 0;
+    
     if (publicId) {
       const audit = await prisma.audit.findUnique({ where: { publicId } });
-      highSavings = (audit?.totalMonthlySavings as number) > 500;
+      if (audit) {
+        highSavings = (audit.totalMonthlySavings as number) > 500;
+        totalMonthlySavings = audit.totalMonthlySavings as number;
+        
+        await prisma.audit.update({
+          where: { publicId },
+          data: {
+            email,
+            companyName,
+            role,
+            capturedAt: new Date()
+          }
+        });
+      }
     }
 
     // Store lead
@@ -59,6 +61,16 @@ export async function POST(request: NextRequest) {
         notified: false
       }
     });
+
+    // Send confirmation email (non-blocking — don't wait for it)
+    if (publicId) {
+      sendAuditConfirmationEmail({
+        to: email,
+        publicId,
+        totalMonthlySavings,
+        isHighSavings: highSavings,
+      }).catch((err) => console.error("Email send failed:", err));
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

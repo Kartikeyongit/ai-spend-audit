@@ -73,7 +73,6 @@
 - Added AI summary to audit API route — non-blocking, graceful degradation
 - Created .env.example for onboarding
 - Sent outreach messages to 5 potential interview subjects on X and Indie Hackers
-- [If done any interviews] Conducted [X] user interviews — notes in USER_INTERVIEWS.md
 
 **What I learned:**
 - Claude 3.5 Haiku follows word-count constraints more precisely than GPT-4o for short summaries
@@ -90,3 +89,32 @@
 - Write USER_INTERVIEWS.md
 - Set up Resend for transactional emails
 - Begin GTM.md and ECONOMICS.md
+
+---
+
+**Day 4 — 2026-05-09**
+
+**Hours worked:** 3.5
+
+**What I did:**
+- Set up Resend for transactional emails with styled HTML template
+- Built email utility with confirmation emails for high-savings and low-savings cases
+- Integrated email sending into lead capture API (non-blocking, graceful failure)
+- Created responsive email template with inline CSS for Gmail/Outlook compatibility
+- Conducted 3 user interviews — notes in USER_INTERVIEWS.md
+- Followed up with remaining interview prospects
+
+**What I learned:**
+- Resend's free tier (100 emails/day) is more than sufficient for an MVP — no need for Postmark's complex setup
+- Email HTML is stuck in 1999 — everything must be inline styles, tables for layout
+- Non-blocking email sends (`.catch()` instead of `await`) keep the API response fast; email failures don't block the user flow
+- When doing cold outreach for user research, "5 minutes of your time" gets way more responses than "15-minute call"
+
+**Blockers / what I'm stuck on:**
+- Still waiting on 2 interview responses — sent follow-ups
+
+**Plan for tomorrow:**
+- Complete USER_INTERVIEWS.md
+- Write GTM.md and ECONOMICS.md (entrepreneurial docs)
+- Write LANDING_COPY.md and METRICS.md
+- Polish UI edge cases
