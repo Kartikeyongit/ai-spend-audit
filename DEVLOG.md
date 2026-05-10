@@ -118,3 +118,30 @@
 - Write GTM.md and ECONOMICS.md (entrepreneurial docs)
 - Write LANDING_COPY.md and METRICS.md
 - Polish UI edge cases
+
+---
+
+**Day 5 — 2026-05-10**
+
+**Hours worked:** 3
+
+**What I did:**
+- Wrote GTM.md: specific target user (Eng Manager, Series A/B), 6-channel $0 budget launch plan, unfair distribution via Credex's existing seller relationships, week 1 traction targets
+- Wrote ECONOMICS.md: LTV estimates ($1,800–$7,200), CAC by channel (all $0), conversion funnel math (0.9% audit→purchase), $1M ARR path requiring 7,000 audits/month at conservative rates
+- Wrote LANDING_COPY.md: hero headline, social proof block (mocked), 7 FAQ questions covering the "what's the catch" objection upfront
+- Wrote METRICS.md: North Star = shared audits/week, 3 input metrics, pivot trigger at <0.3% audit-to-consultation conversion
+- Thought hard about the distinction between "audits completed" and "audits shared" — the sharing is the growth engine, not the completion
+
+**What I learned:**
+- The assignment's emphasis on "specific, weird, real channels" forced me to think beyond SEO and content marketing. Direct DMs to people complaining on X is the kind of unscalable thing that works in week 1.
+- Unit economics for a free lead-gen tool are fundamentally different from SaaS economics. CAC is time, not money. LTV depends entirely on Credex's sales team after the audit.
+- The FAQ section is doing a lot of heavy lifting in the landing copy — the "what's the catch" question needs to be answered transparently, not dodged.
+
+**Blockers / what I'm stuck on:**
+- All major deliverables on track. Remaining: REFLECTION.md, PROMPTS.md (already drafted, needs final review), polish, deploy.
+
+**Plan for tomorrow:**
+- Write REFLECTION.md (answer all 5 questions)
+- Polish UI edge cases and responsive design
+- Deploy to Vercel
+- Bonus feature if time permits (PDF export or blog post)
