@@ -252,8 +252,11 @@ export default function HomePage() {
           </Card>
 
           <Button type="submit" size="lg" className="w-full text-lg" disabled={isSubmitting}>
-            {isSubmitting ? "Analyzing..." : "Run Free Audit"}
-            <ArrowRight className="ml-2 h-5 w-5" />
+            {isSubmitting ? (
+              <>Analyzing... <span className="animate-spin ml-2">⏳</span></>
+            ) : (
+              <>Run Free Audit <ArrowRight className="ml-2 h-5 w-5" /></>
+            )}
           </Button>
         </form>
       </div>

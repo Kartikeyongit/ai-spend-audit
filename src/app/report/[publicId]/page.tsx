@@ -82,7 +82,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
               <h1 className="text-4xl font-bold text-slate-900 mb-2">
                 You could save
               </h1>
-              <p className="text-7xl font-extrabold text-green-600 mb-2">
+              <p className="text-5x1 md:text-7xl font-extrabold text-green-600 mb-2">
                 ${audit.totalMonthlySavings as number}
                 <span className="text-2xl text-slate-500 font-normal">/month</span>
               </p>

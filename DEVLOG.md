@@ -145,3 +145,30 @@
 - Polish UI edge cases and responsive design
 - Deploy to Vercel
 - Bonus feature if time permits (PDF export or blog post)
+
+---
+
+**Day 6 — 2026-05-11**
+
+**Hours worked:** 3
+
+**What I did:**
+- Wrote REFLECTION.md covering all 5 required questions: hardest bug (Prisma shadow DB port mismatch), reversed decision (email gate → results-first), week 2 plans (API calculator, CSV upload, benchmarking), AI usage disclosure, self-ratings
+- Finalized PROMPTS.md with full prompt documentation and rationale
+- Polished UI: responsive text sizing on report page, loading spinner on form submit, favicon metadata
+- Added 404 page and error boundary for production readiness
+- Tested full flow end-to-end: form → audit → report → share → email capture
+
+**What I learned:**
+- Writing the REFLECTION forced me to articulate decisions I made instinctively during the build (like results-first vs email-gated). The act of explaining them revealed the thinking that was implicit.
+- The user interviews were genuinely the highest-signal input this week. Every concrete design change traces back to a specific quote from a real user.
+- Being honest about AI usage (where I used it, where I didn't trust it, where it was wrong) produced a more credible reflection than pretending I hand-coded everything.
+
+**Blockers / what I'm stuck on:**
+- Deployment pending — need Vercel project set up with environment variables
+
+**Plan for tomorrow:**
+- Deploy to Vercel
+- Final review against evaluation rubric
+- Bonus feature if time (PDF export or launch blog post draft)
+- Submit
