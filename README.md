@@ -2,7 +2,7 @@
 
 A free tool that audits your AI tool spending and finds real savings opportunities. Built for the Credex Web Development Intern assignment (Round 1).
 
-**Live demo:** [Deploy on Vercel to get your URL]
+[Live demo](https://ai-spend-audit-taupe.vercel.app/)
 
 ## What It Does
 
