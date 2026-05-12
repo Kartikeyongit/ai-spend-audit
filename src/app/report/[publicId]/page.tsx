@@ -189,7 +189,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
 
         {/* Email Capture */}
         <div id="capture" className="mb-8">
-          <EmailCaptureForm publicId={params.publicId} isHighSavings={isHighSavings} />
+          <EmailCaptureForm publicId={publicId} isHighSavings={isHighSavings} />
         </div>
 
         {/* Share Button */}

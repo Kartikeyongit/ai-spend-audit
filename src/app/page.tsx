@@ -224,7 +224,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label>Team size</Label>
+                <Label className="text-xs">Team size</Label>
                 <Input
                   type="number"
                   min={1}
@@ -233,7 +233,7 @@ export default function HomePage() {
                 />
               </div>
               <div>
-                <Label>Primary use case</Label>
+                <Label className="text-xs">Primary use case</Label>
                 <Select
                   value={form.primaryUseCase}
                   onValueChange={(v) => setForm(prev => ({ ...prev, primaryUseCase: v }))}

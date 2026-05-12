@@ -32,7 +32,7 @@ export async function generateAISummary(input: SummaryInput): Promise<string> {
     const prompt = buildPrompt(input);
 
     const response = await anthropic.messages.create({
-      model: "claude-3-5-haiku-20241022",
+      model: "claude-3-5-haiku-latest",
       max_tokens: 300,
       temperature: 0.7,
       system: "You are a helpful AI spending analyst. Write concise, specific, and actionable summaries. Never hallucinate prices or make up data. Only reference information provided in the audit.",

@@ -50,19 +50,41 @@ export async function POST(request: NextRequest) {
     }
 
     // Store lead
-    await prisma.lead.create({
-      data: {
-        email,
-        companyName,
-        role,
-        teamSize: teamSize ? parseInt(teamSize) : null,
-        auditId: publicId,
-        highSavings,
-        notified: false
+    try {
+      await prisma.lead.create({
+        data: {
+          email,
+          companyName,
+          role,
+          teamSize: teamSize ? parseInt(teamSize) : null,
+          auditId: publicId || null,
+          highSavings,
+          notified: false
+        }
+      });
+    } catch (leadError: any) {
+      // P2002: duplicate email — already captured
+      if (leadError?.code === "P2002") {
+        return NextResponse.json({ success: true, duplicate: true });
       }
-    });
+      // P2003: foreign key — audit doesn't exist, save without auditId
+      if (leadError?.code === "P2003") {
+        await prisma.lead.create({
+          data: {
+            email,
+            companyName,
+            role,
+            teamSize: teamSize ? parseInt(teamSize) : null,
+            highSavings: false,
+            notified: false
+          }
+        });
+        return NextResponse.json({ success: true });
+      }
+      throw leadError;
+    }
 
-    // Send confirmation email (non-blocking — don't wait for it)
+    // Send confirmation email (non-blocking)
     if (publicId) {
       sendAuditConfirmationEmail({
         to: email,
@@ -73,6 +95,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
+    
   } catch (error) {
     console.error("Capture error:", error);
     return NextResponse.json({ error: "Failed to capture lead" }, { status: 500 });

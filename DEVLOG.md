@@ -172,3 +172,31 @@
 - Final review against evaluation rubric
 - Bonus feature if time (PDF export or launch blog post draft)
 - Submit
+
+---
+
+**Day 7 — 2026-05-12**
+
+**Hours worked:** 3
+
+**What I did:**
+- Deployed to Vercel with environment variables (DATABASE_URL, ANTHROPIC_API_KEY, RESEND_API_KEY)
+- Migrated database to cloud PostgreSQL
+- Tested full flow in production: form → audit → report → share → email capture
+- Verified OG tags render correctly on Twitter Card validator and LinkedIn
+- Wrote launch blog post draft (LAUNCH_POST.md) — 3 real startup scenarios from user interviews
+- Ran final submission checklist: all 13 MD files, 8 passing tests, CI green, 7 DEVLOG entries
+- Verified 6 distinct calendar days of commits
+
+**What I learned:**
+- Vercel deployment for Next.js is genuinely one-click — the environment variable UI is clean
+- Testing OG tags requires production URL — localhost won't render previews on social platforms
+- The final review against the rubric revealed I had ARCHITECTURE.md's Mermaid diagram working locally but needed to verify it rendered on GitHub (it does — GitHub natively supports Mermaid)
+- Building the launch post forced me to frame the tool as a story, not a feature list — startups respond to specific dollar amounts, not "we help you save money"
+
+**Blockers / what I'm stuck on:**
+- Resend domain verification pending (using test mode for now — emails send to verified address only in free tier)
+- Nothing blocking submission
+
+**Plan for tomorrow:**
+- Submit.
