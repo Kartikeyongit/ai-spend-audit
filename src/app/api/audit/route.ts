@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { runAudit, UserTool } from "@/lib/audit-engine";
 import { generateAISummary } from "@/lib/ai-summary";
 import { randomUUID } from "crypto";
+import { TOOLS, API_PRICING } from "@/lib/pricing-data";
 
 const prisma = new PrismaClient();
 
@@ -37,6 +38,12 @@ export async function POST(request: NextRequest) {
     // Generate a unique public ID for sharing
     const publicId = randomUUID().slice(0, 8);
 
+    const pricingSnapshot = {
+      tools: JSON.parse(JSON.stringify(TOOLS)),
+      apiPricing: JSON.parse(JSON.stringify(API_PRICING)),
+      capturedAt: new Date().toISOString(),
+    };
+
     // Save to database
     const audit = await prisma.audit.create({
       data: {
@@ -49,6 +56,8 @@ export async function POST(request: NextRequest) {
         totalAnnualSavings: auditResult.totalAnnualSavings,
         recommendations: JSON.parse(JSON.stringify(auditResult.recommendations)),
         aiSummary: aiSummary,
+        pricingSnapshot: pricingSnapshot,
+        status: "active",
       }
     });
 

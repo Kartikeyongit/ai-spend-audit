@@ -31,6 +31,10 @@ model Audit {
   role              String?
   capturedAt        DateTime?
 
+  // Snapshot of pricing data used when audit was created
+  pricingSnapshot   Json?     
+  status            String   @default("active") // active | archived
+
   // Relation back to Lead
   leads             Lead[]
 }
