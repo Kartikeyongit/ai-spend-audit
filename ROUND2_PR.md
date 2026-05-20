@@ -29,6 +29,11 @@ Pricing for AI tools changes frequently — Cursor raised prices in 2024, Claude
 4. Click the "Re-run audit" link in the email
 5. You should see the diff view: original audit vs new audit, with Cursor Pro's recommendation updated
 6. Verify the savings delta at the top shows the difference
+7. **Note for reviewer:** Resend's free tier only delivers to verified email addresses. 
+To receive the actual email, the captured email must match a verified Resend recipient. 
+The API response confirms email sending (`emailsSent: 1`) — full email content 
+is visible in `src/lib/email-reaudit.ts`. The diff view at `/reaudit/[publicId]/diff` 
+is fully testable without email access.
 
 ## What's tested
 - Audit creation now includes `pricingSnapshot` in the database row
