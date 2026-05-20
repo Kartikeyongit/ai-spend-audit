@@ -6,7 +6,7 @@ interface PricingSnapshot {
   capturedAt: string;
 }
 
-interface PricingChange {
+export interface PricingChange {
   toolName: string;
   planName?: string;
   field: string;

@@ -131,20 +131,20 @@ export default function DiffViewPage() {
           <CardContent className="p-8 text-center">
             <p className="text-sm text-slate-500 mb-2">Savings difference</p>
             
-            {savingsDelta === 0 ? (
+            {data.savingsDelta === 0 ? (
               <div className="flex items-center justify-center gap-3">
                 <Minus className="h-8 w-8 text-slate-400" />
                 <span className="text-4xl font-bold text-slate-600">No change</span>
               </div>
             ) : (
               <div className="flex items-center justify-center gap-3">
-                {savingsImproved ? (
+                {data.savingsDelta > 0 ? (
                   <TrendingDown className="h-8 w-8 text-green-600" />
                 ) : (
                   <TrendingUp className="h-8 w-8 text-red-500" />
                 )}
-                <span className={`text-4xl font-bold ${savingsImproved ? "text-green-600" : "text-red-500"}`}>
-                  {savingsImproved ? "+" : ""}{data.savingsDelta > 0 ? `$${Math.abs(data.savingsDelta)}` : `-$${Math.abs(data.savingsDelta)}`}
+                <span className={`text-4xl font-bold ${data.savingsDelta > 0 ? "text-green-600" : "text-red-500"}`}>
+                  {data.savingsDelta > 0 ? "+" : ""}${Math.abs(data.savingsDelta)}
                   <span className="text-lg font-normal">/month</span>
                 </span>
               </div>
