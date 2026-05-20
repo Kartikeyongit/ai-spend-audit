@@ -33,7 +33,7 @@ Pricing for AI tools changes frequently — Cursor raised prices in 2024, Claude
 To receive the actual email, the captured email must match a verified Resend recipient. 
 The API response confirms email sending (`emailsSent: 1`) — full email content 
 is visible in `src/lib/email-reaudit.ts`. The diff view at `/reaudit/[publicId]/diff` 
-is fully testable without email access.
+is fully testable without email.
 
 ## What's tested
 - Audit creation now includes `pricingSnapshot` in the database row
