@@ -1,0 +1,13 @@
+# Round 2 Reflection
+
+## What was the most uncomfortable trade-off you made because of the time pressure?
+
+I chose to trigger pricing change detection via a manual POST endpoint rather than a scheduled cron job. The spec explicitly says "either is fine," but I know that in production, a manual trigger means someone has to remember to run it — which means it won't happen consistently. The trade-off was reliability for build speed. I could have set up Vercel Cron in about an hour (it requires upgrading to Pro, or using GitHub Actions as a workaround), but that hour went into the diff view instead. The diff view is what users actually see; the cron trigger is invisible infrastructure. In a real launch, I'd flip this priority — the cron job is what makes the feature actually work for users who aren't actively checking pricing pages.
+
+## If we extended the deadline by another 24 hours right now, what's the first thing you'd do?
+
+I'd add the "What changed in the AI tooling market this week?" public page. Right now, the re-audit feature only benefits users who already ran an audit and captured their email. That's a closed loop. A public changelog page showing pricing changes across all tools — regardless of whether anyone has an audit — turns the feature into a growth surface. It's SEO-friendly ("AI tool pricing changes May 2026"), it's shareable on its own, and it drives new users into the top of the funnel. The detection logic already exists in `pricing-diff.ts` — the page is mostly rendering work. I'd build it as a static page that regenerates when pricing data changes.
+
+## Looking back at your Round 1 codebase as a now-experienced user of it: what's one thing your Round 2 self made harder for your Round 2 self?
+
+The `Audit` model didn't store the user's email directly — it was in the `Lead` table as a separate join. In Round 1, this made sense: audits are public (shareable without login), and leads are private (captured after value is shown). But in Round 2, I needed to query "all active audits with emails" to send re-audit notifications. That required either a JOIN across `Audit` and `Lead`, or denormalizing email into the `Audit` table. I chose denormalization (added `email` to `Audit`) because it was faster than rewriting every query. The uncomfortable truth: I now have the same data in two places, which Round 1 me explicitly avoided. Round 1 me was optimizing for normalization purity. Round 2 me needed to ship in 36 hours and didn't have time to refactor the data access layer. If I were starting over, I'd store email on Audit from the beginning and treat Lead as the marketing table, not the source of truth for user identity.
