@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle, Trash2, ArrowRight, Sparkles, BarChart3, LayoutDashboard } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { TOOLS } from "@/lib/pricing-data";
@@ -36,7 +35,6 @@ export default function HomePage() {
     setMounted(true);
   }, []);
 
-  // Load from localStorage on mount
   useEffect(() => {
     const saved = localStorage.getItem("audit-form");
     if (saved) {
@@ -48,7 +46,6 @@ export default function HomePage() {
     }
   }, []);
 
-  // Save to localStorage on change
   useEffect(() => {
     localStorage.setItem("audit-form", JSON.stringify(form));
   }, [form]);
@@ -120,6 +117,15 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#020617] text-[#f8fafc] font-[Sora,sans-serif] relative overflow-hidden selection:bg-[#6366f1]/30 selection:text-white">
+      {/* Inline keyframes for floating orbs (no tailwind config changes needed) */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float { animation: float 8s ease-in-out infinite; }
+      `}</style>
+
       {/* ========== RICH BACKGROUND ========== */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
@@ -186,10 +192,7 @@ export default function HomePage() {
           </div>
           <h1 className="text-5xl font-bold tracking-tight mb-4">
             Audit Your{" "}
-            <span
-              className="text-[#6366f1]"
-              style={{ textShadow: "0 0 40px rgba(99,102,241,0.3)" }}
-            >
+            <span className="text-[#6366f1]" style={{ textShadow: "0 0 40px rgba(99,102,241,0.3)" }}>
               AI Spend
             </span>
           </h1>
@@ -226,7 +229,7 @@ export default function HomePage() {
                           value={tool.toolName}
                           onValueChange={(v) => updateTool(index, "toolName", v)}
                         >
-                          <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all">
+                          <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                             <SelectValue placeholder="Select tool" />
                           </SelectTrigger>
                           <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
@@ -234,7 +237,7 @@ export default function HomePage() {
                               <SelectItem
                                 key={t.name}
                                 value={t.name}
-                                className="text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc]"
+                                className="text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc] cursor-pointer"
                               >
                                 {t.name}
                               </SelectItem>
@@ -254,7 +257,7 @@ export default function HomePage() {
                                 value={tool.planName}
                                 onValueChange={(v) => updateTool(index, "planName", v)}
                               >
-                                <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all">
+                                <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                                   <SelectValue placeholder="Select plan" />
                                 </SelectTrigger>
                                 <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
@@ -262,7 +265,7 @@ export default function HomePage() {
                                     <SelectItem
                                       key={p.name}
                                       value={p.name}
-                                      className="text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc]"
+                                      className="text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc] cursor-pointer"
                                     >
                                       {p.name} — ${p.monthlyPricePerSeat}/seat
                                     </SelectItem>
@@ -279,7 +282,7 @@ export default function HomePage() {
                                 min={1}
                                 value={tool.seats}
                                 onChange={(e) => updateTool(index, "seats", parseInt(e.target.value) || 1)}
-                                className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all"
+                                className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                               />
                             </div>
                           </div>
@@ -292,7 +295,7 @@ export default function HomePage() {
                               value={tool.monthlySpend}
                               onChange={(e) => updateTool(index, "monthlySpend", parseFloat(e.target.value) || 0)}
                               placeholder="0"
-                              className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] placeholder-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all"
+                              className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] placeholder-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                             />
                           </div>
                         </>
@@ -305,7 +308,7 @@ export default function HomePage() {
                         variant="ghost"
                         size="icon"
                         onClick={() => removeTool(index)}
-                        className="mt-6 hover:bg-red-500/10 hover:text-red-400 text-[#64748b] transition-colors"
+                        className="mt-6 hover:bg-red-500/10 hover:text-red-400 text-[#64748b] transition-colors shrink-0"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -345,7 +348,7 @@ export default function HomePage() {
                     min={1}
                     value={form.teamSize}
                     onChange={(e) => setForm(prev => ({ ...prev, teamSize: parseInt(e.target.value) || 1 }))}
-                    className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all"
+                    className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                   />
                 </div>
                 <div>
@@ -356,7 +359,7 @@ export default function HomePage() {
                     value={form.primaryUseCase}
                     onValueChange={(v) => setForm(prev => ({ ...prev, primaryUseCase: v }))}
                   >
-                    <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all">
+                    <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
@@ -364,7 +367,7 @@ export default function HomePage() {
                         <SelectItem
                           key={uc}
                           value={uc}
-                          className="capitalize text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc]"
+                          className="capitalize text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc] cursor-pointer"
                         >
                           {uc}
                         </SelectItem>
