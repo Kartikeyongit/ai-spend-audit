@@ -63,6 +63,18 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
 
   return (
     <Card className="bg-[#0f172a]/70 backdrop-blur-xl border-[#334155] rounded-2xl shadow-2xl shadow-black/40 text-[#f8fafc]">
+      {/* Hide native number spinners */}
+      <style>{`
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+      `}</style>
+
       <CardHeader className="pb-4 border-b border-[#334155]/60">
         <CardTitle className="text-lg font-semibold text-[#f8fafc] flex items-center gap-3">
           <div className="w-8 h-8 bg-[#6366f1]/10 rounded-lg flex items-center justify-center">
