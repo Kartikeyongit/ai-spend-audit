@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, Building, User, Users } from "lucide-react";
+import { Mail, Building, User, Users, CheckCircle, Sparkles } from "lucide-react";
 
 interface EmailCaptureFormProps {
   publicId: string;
@@ -45,13 +45,13 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
 
   if (submitted) {
     return (
-      <Card className="bg-green-50 border-green-200">
+      <Card className="bg-[#0f172a]/70 backdrop-blur-xl border-[#334155] rounded-2xl shadow-2xl shadow-black/40 text-[#f8fafc]">
         <CardContent className="p-8 text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
-            <Mail className="h-6 w-6 text-green-600" />
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-[#22d3ee]/10 rounded-full mb-4 border border-[#22d3ee]/20">
+            <CheckCircle className="h-6 w-6 text-[#22d3ee]" />
           </div>
-          <h3 className="text-xl font-bold text-green-800 mb-2">Report saved!</h3>
-          <p className="text-green-700">
+          <h3 className="text-xl font-bold text-[#f8fafc] mb-2">Report saved!</h3>
+          <p className="text-[#94a3b8]">
             {isHighSavings 
               ? "We'll reach out within 24 hours to discuss your savings opportunities."
               : "We'll notify you when new optimizations apply to your stack."}
@@ -62,26 +62,31 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg">
+    <Card className="bg-[#0f172a]/70 backdrop-blur-xl border-[#334155] rounded-2xl shadow-2xl shadow-black/40 text-[#f8fafc]">
+      <CardHeader className="pb-4 border-b border-[#334155]/60">
+        <CardTitle className="text-lg font-semibold text-[#f8fafc] flex items-center gap-3">
+          <div className="w-8 h-8 bg-[#6366f1]/10 rounded-lg flex items-center justify-center">
+            <Sparkles className="text-[#6366f1]" size={16} />
+          </div>
           {isHighSavings ? "Get your full report & book a consultation" : "Save your report"}
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-6">
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             
             {/* Email - full width */}
             <div className="grid gap-1.5">
-              <Label htmlFor="email">Email *</Label>
+              <Label htmlFor="email" className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wider">
+                Email *
+              </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748b] pointer-events-none" />
                 <Input
                   id="email"
                   type="email"
                   required
-                  className="pl-10"
+                  className="pl-10 bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] placeholder-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                   placeholder="you@company.com"
                   value={form.email}
                   onChange={(e) => setForm(prev => ({ ...prev, email: e.target.value }))}
@@ -92,12 +97,14 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
             {/* Company + Role - side by side */}
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-1.5">
-                <Label htmlFor="company">Company</Label>
+                <Label htmlFor="company" className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wider">
+                  Company
+                </Label>
                 <div className="relative">
-                  <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
+                  <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748b] pointer-events-none" />
                   <Input
                     id="company"
-                    className="pl-10"
+                    className="pl-10 bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] placeholder-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                     placeholder="Acme Inc"
                     value={form.companyName}
                     onChange={(e) => setForm(prev => ({ ...prev, companyName: e.target.value }))}
@@ -105,12 +112,14 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
                 </div>
               </div>
               <div className="grid gap-1.5">
-                <Label htmlFor="role">Role</Label>
+                <Label htmlFor="role" className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wider">
+                  Role
+                </Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748b] pointer-events-none" />
                   <Input
                     id="role"
-                    className="pl-10"
+                    className="pl-10 bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] placeholder-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                     placeholder="Engineering Manager"
                     value={form.role}
                     onChange={(e) => setForm(prev => ({ ...prev, role: e.target.value }))}
@@ -121,13 +130,15 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
 
             {/* Team size */}
             <div className="grid gap-1.5">
-              <Label htmlFor="teamSize">Team size</Label>
+              <Label htmlFor="teamSize" className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wider">
+                Team size
+              </Label>
               <div className="relative">
-                <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
+                <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748b] pointer-events-none" />
                 <Input
                   id="teamSize"
                   type="number"
-                  className="pl-10"
+                  className="pl-10 bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] placeholder-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11"
                   placeholder="10"
                   value={form.teamSize}
                   onChange={(e) => setForm(prev => ({ ...prev, teamSize: e.target.value }))}
@@ -142,12 +153,23 @@ export function EmailCaptureForm({ publicId, isHighSavings }: EmailCaptureFormPr
             <input type="text" name="website" tabIndex={-1} autoComplete="off" />
           </div>
 
-          <Button type="submit" className="w-full mt-6" disabled={loading}>
-            {loading ? "Saving..." : isHighSavings ? "Get Full Report & Book Call" : "Email My Report"}
+          <Button
+            type="submit"
+            className="w-full mt-6 bg-[#6366f1] hover:bg-[#4f46e5] text-white font-semibold shadow-[0_0_20px_rgba(99,102,241,0.25)] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all duration-300 rounded-xl h-11"
+            disabled={loading}
+          >
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Saving...
+              </span>
+            ) : (
+              isHighSavings ? "Get Full Report & Book Call" : "Email My Report"
+            )}
           </Button>
 
-          <p className="text-xs text-slate-400 text-center mt-3">
-            No spam. Your data stays private. We'll only reach out if there's real savings potential.
+          <p className="text-xs text-[#475569] text-center mt-3">
+            No spam. Your data stays private. We&apos;ll only reach out if there&apos;s real savings potential.
           </p>
         </form>
       </CardContent>
