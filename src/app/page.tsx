@@ -117,13 +117,23 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#020617] text-[#f8fafc] font-[Sora,sans-serif] relative overflow-hidden selection:bg-[#6366f1]/30 selection:text-white">
-      {/* Inline keyframes for floating orbs (no tailwind config changes needed) */}
+      {/* Inline styles: float animation + hide number spinners + dropdown hover fix */}
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-20px); }
         }
         .animate-float { animation: float 8s ease-in-out infinite; }
+        
+        /* Hide native number input spinners (light theme issue) */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
       `}</style>
 
       {/* ========== RICH BACKGROUND ========== */}
@@ -229,7 +239,7 @@ export default function HomePage() {
                           value={tool.toolName}
                           onValueChange={(v) => updateTool(index, "toolName", v)}
                         >
-                          <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
+                          <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] data-[placeholder]:text-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                             <SelectValue placeholder="Select tool" />
                           </SelectTrigger>
                           <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
@@ -237,7 +247,7 @@ export default function HomePage() {
                               <SelectItem
                                 key={t.name}
                                 value={t.name}
-                                className="text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc] cursor-pointer"
+                                className="text-[#f8fafc] data-[highlighted]:bg-[#6366f1]/20 data-[highlighted]:text-[#f8fafc] data-[state=checked]:text-[#f8fafc] cursor-pointer"
                               >
                                 {t.name}
                               </SelectItem>
@@ -257,7 +267,7 @@ export default function HomePage() {
                                 value={tool.planName}
                                 onValueChange={(v) => updateTool(index, "planName", v)}
                               >
-                                <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
+                                <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] data-[placeholder]:text-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                                   <SelectValue placeholder="Select plan" />
                                 </SelectTrigger>
                                 <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
@@ -265,7 +275,7 @@ export default function HomePage() {
                                     <SelectItem
                                       key={p.name}
                                       value={p.name}
-                                      className="text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc] cursor-pointer"
+                                      className="text-[#f8fafc] data-[highlighted]:bg-[#6366f1]/20 data-[highlighted]:text-[#f8fafc] data-[state=checked]:text-[#f8fafc] cursor-pointer"
                                     >
                                       {p.name} — ${p.monthlyPricePerSeat}/seat
                                     </SelectItem>
@@ -359,7 +369,7 @@ export default function HomePage() {
                     value={form.primaryUseCase}
                     onValueChange={(v) => setForm(prev => ({ ...prev, primaryUseCase: v }))}
                   >
-                    <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
+                    <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] data-[placeholder]:text-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
@@ -367,7 +377,7 @@ export default function HomePage() {
                         <SelectItem
                           key={uc}
                           value={uc}
-                          className="capitalize text-[#f8fafc] focus:bg-[#6366f1]/20 focus:text-[#f8fafc] cursor-pointer"
+                          className="capitalize text-[#f8fafc] data-[highlighted]:bg-[#6366f1]/20 data-[highlighted]:text-[#f8fafc] data-[state=checked]:text-[#f8fafc] cursor-pointer"
                         >
                           {uc}
                         </SelectItem>

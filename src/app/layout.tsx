@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@fontsource/dm-sans/400.css";
-import "@fontsource/dm-sans/500.css";
-import "@fontsource/dm-sans/700.css";
+import "@fontsource/sora/400.css";
+import "@fontsource/sora/500.css";
+import "@fontsource/sora/600.css";
+import "@fontsource/sora/700.css";
 
 export const metadata: Metadata = {
   title: "AI Spend Audit — Find Savings in 60 Seconds",
@@ -26,8 +27,11 @@ export default function RootLayout({
     <html
       lang="en"
       className="h-full antialiased"
+      style={{ fontFamily: "'Sora', sans-serif" }}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#020617] text-[#f8fafc]">
+        {children}
+      </body>
     </html>
   );
 }
