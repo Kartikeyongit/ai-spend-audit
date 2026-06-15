@@ -116,16 +116,14 @@ export default function HomePage() {
   const selectedTool = (toolName: string) => TOOLS.find(t => t.name === toolName);
 
   return (
-    <main className="min-h-screen bg-[#020617] text-[#f8fafc] font-[Sora,sans-serif] relative overflow-hidden selection:bg-[#6366f1]/30 selection:text-white">
-      {/* Inline styles: float animation + hide number spinners + dropdown hover fix */}
+    <main className="min-h-screen bg-[#020617] text-[#f8fafc] relative overflow-hidden selection:bg-[#6366f1]/30 selection:text-white">
+      {/* Inline styles: float animation + hide number spinners */}
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-20px); }
         }
         .animate-float { animation: float 8s ease-in-out infinite; }
-        
-        /* Hide native number input spinners (light theme issue) */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
           -webkit-appearance: none;
@@ -136,7 +134,7 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ========== RICH BACKGROUND ========== */}
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.12]"
@@ -161,7 +159,7 @@ export default function HomePage() {
         />
       </div>
 
-      {/* ========== TOP NAVIGATION ========== */}
+      {/* Top Navigation */}
       <nav className="relative z-20 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto w-full">
         <a href="/" className="flex items-center gap-2.5 group">
           <div className="w-8 h-8 bg-[#6366f1] rounded-lg flex items-center justify-center text-white font-bold shadow-[0_0_20px_rgba(99,102,241,0.3)] group-hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-shadow duration-300">
@@ -188,7 +186,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* ========== CONTENT ========== */}
+      {/* Content */}
       <div
         className={`relative z-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -247,7 +245,7 @@ export default function HomePage() {
                               <SelectItem
                                 key={t.name}
                                 value={t.name}
-                                className="text-[#f8fafc] data-[highlighted]:bg-[#6366f1]/20 data-[highlighted]:text-[#f8fafc] data-[state=checked]:text-[#f8fafc] cursor-pointer"
+                                className="!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] data-[state=checked]:!text-[#f8fafc] cursor-pointer"
                               >
                                 {t.name}
                               </SelectItem>
@@ -275,7 +273,7 @@ export default function HomePage() {
                                     <SelectItem
                                       key={p.name}
                                       value={p.name}
-                                      className="text-[#f8fafc] data-[highlighted]:bg-[#6366f1]/20 data-[highlighted]:text-[#f8fafc] data-[state=checked]:text-[#f8fafc] cursor-pointer"
+                                      className="!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] data-[state=checked]:!text-[#f8fafc] cursor-pointer"
                                     >
                                       {p.name} — ${p.monthlyPricePerSeat}/seat
                                     </SelectItem>
@@ -377,7 +375,7 @@ export default function HomePage() {
                         <SelectItem
                           key={uc}
                           value={uc}
-                          className="capitalize text-[#f8fafc] data-[highlighted]:bg-[#6366f1]/20 data-[highlighted]:text-[#f8fafc] data-[state=checked]:text-[#f8fafc] cursor-pointer"
+                          className="capitalize !text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] data-[state=checked]:!text-[#f8fafc] cursor-pointer"
                         >
                           {uc}
                         </SelectItem>
