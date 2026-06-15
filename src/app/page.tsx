@@ -245,7 +245,7 @@ export default function HomePage() {
                               <SelectItem
                                 key={t.name}
                                 value={t.name}
-                                className="!text-[#f8fafc] hover:!bg-[#6366f1]/20 focus:!bg-[#6366f1]/20 data-[state=checked]:!text-[#f8fafc] cursor-pointer"
+                                className="!text-[#f8fafc] hover:!bg-[#6366f1]/20 hover:!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] cursor-pointer"
                               >
                                 {t.name}
                               </SelectItem>
@@ -273,7 +273,7 @@ export default function HomePage() {
                                     <SelectItem
                                       key={p.name}
                                       value={p.name}
-                                      className="!text-[#f8fafc] hover:!bg-[#6366f1]/20 focus:!bg-[#6366f1]/20 data-[state=checked]:!text-[#f8fafc] cursor-pointer"
+                                      className="!text-[#f8fafc] hover:!bg-[#6366f1]/20 hover:!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] cursor-pointer"
                                     >
                                       {p.name} — ${p.monthlyPricePerSeat}/seat
                                     </SelectItem>
@@ -375,7 +375,7 @@ export default function HomePage() {
                         <SelectItem
                           key={uc}
                           value={uc}
-                          className="capitalize !text-[#f8fafc] hover:!bg-[#6366f1]/20 focus:!bg-[#6366f1]/20 data-[state=checked]:!text-[#f8fafc] cursor-pointer"
+                          className="capitalize !text-[#f8fafc] hover:!bg-[#6366f1]/20 hover:!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] cursor-pointer"
                         >
                           {uc}
                         </SelectItem>
