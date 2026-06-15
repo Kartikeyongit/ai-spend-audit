@@ -97,7 +97,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
 
       {/* Top Navigation */}
       <nav className="relative z-20 flex items-center justify-between px-6 py-5 max-w-7xl mx-auto w-full">
-        <a href="/" className="flex items-center gap-2.5 group">
+        <a href="https://value-ai-spa-sepia.vercel.app/" className="flex items-center gap-2.5 group">
           <div className="w-8 h-8 bg-[#6366f1] rounded-lg flex items-center justify-center text-white font-bold shadow-[0_0_20px_rgba(99,102,241,0.3)] group-hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-shadow duration-300">
             <Sparkles size={16} strokeWidth={2.5} />
           </div>
@@ -106,18 +106,18 @@ export default async function ReportPage({ params }: ReportPageProps) {
 
         <div className="flex items-center gap-1 sm:gap-3">
           <a
-            href="/dashboard/login"
+            href="https://value-ai-ten.vercel.app/"
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-white/[0.03] transition-all duration-200"
           >
             <LayoutDashboard size={16} />
             <span className="hidden sm:inline">Dashboard</span>
           </a>
           <a
-            href="/"
+            href="https://ai-spend-audit-taupe.vercel.app/"
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-white/[0.03] transition-all duration-200"
           >
             <BarChart3 size={16} className="text-[#6366f1]" />
-            <span className="hidden sm:inline">Home</span>
+            <span className="hidden sm:inline">Back</span>
           </a>
         </div>
       </nav>
@@ -217,12 +217,12 @@ export default async function ReportPage({ params }: ReportPageProps) {
                 Want to actually save this money?
               </h2>
               <p className="text-[#c7d2fe] mb-6 max-w-md mx-auto">
-                Credex helps companies like yours save 20-30% on AI infrastructure 
+                ValueAI helps companies like yours save 20-30% on AI infrastructure 
                 through discounted credits. Book a free consultation to turn these 
                 savings into reality.
               </p>
               <Button size="lg" variant="secondary" asChild className="bg-white text-[#4f46e5] hover:bg-[#f1f5f9] font-semibold">
-                <a href="#capture">Book a Credex Consultation →</a>
+                <a href="#capture">Book a ValueAI Consultation →</a>
               </Button>
             </CardContent>
           </Card>
