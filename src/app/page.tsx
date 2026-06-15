@@ -240,12 +240,12 @@ export default function HomePage() {
                           <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] data-[placeholder]:text-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                             <SelectValue placeholder="Select tool" />
                           </SelectTrigger>
-                          <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
+                          <SelectContent className="!bg-[#1e293b] !border-[#334155] !text-[#f8fafc]">
                             {TOOLS.map(t => (
                               <SelectItem
                                 key={t.name}
                                 value={t.name}
-                                className="!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] data-[state=checked]:!text-[#f8fafc] cursor-pointer"
+                                className="!text-[#f8fafc] hover:!bg-[#6366f1]/20 focus:!bg-[#6366f1]/20 data-[state=checked]:!text-[#f8fafc] cursor-pointer"
                               >
                                 {t.name}
                               </SelectItem>
@@ -268,12 +268,12 @@ export default function HomePage() {
                                 <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] data-[placeholder]:text-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                                   <SelectValue placeholder="Select plan" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
+                                <SelectContent className="!bg-[#1e293b] !border-[#334155] !text-[#f8fafc]">
                                   {selectedTool(tool.toolName)?.plans.map(p => (
                                     <SelectItem
                                       key={p.name}
                                       value={p.name}
-                                      className="!text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] data-[state=checked]:!text-[#f8fafc] cursor-pointer"
+                                      className="!text-[#f8fafc] hover:!bg-[#6366f1]/20 focus:!bg-[#6366f1]/20 data-[state=checked]:!text-[#f8fafc] cursor-pointer"
                                     >
                                       {p.name} — ${p.monthlyPricePerSeat}/seat
                                     </SelectItem>
@@ -370,12 +370,12 @@ export default function HomePage() {
                     <SelectTrigger className="bg-[#020617] border-[#334155] rounded-xl text-[#f8fafc] data-[placeholder]:text-[#475569] focus:ring-1 focus:ring-[#6366f1]/30 focus:border-[#6366f1] hover:border-[#475569] transition-all h-11">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#1e293b] border-[#334155] text-[#f8fafc]">
+                    <SelectContent className="!bg-[#1e293b] !border-[#334155] !text-[#f8fafc]">
                       {USE_CASES.map(uc => (
                         <SelectItem
                           key={uc}
                           value={uc}
-                          className="capitalize !text-[#f8fafc] focus:!bg-[#6366f1]/20 focus:!text-[#f8fafc] data-[highlighted]:!bg-[#6366f1]/20 data-[highlighted]:!text-[#f8fafc] data-[state=checked]:!text-[#f8fafc] cursor-pointer"
+                          className="capitalize !text-[#f8fafc] hover:!bg-[#6366f1]/20 focus:!bg-[#6366f1]/20 data-[state=checked]:!text-[#f8fafc] cursor-pointer"
                         >
                           {uc}
                         </SelectItem>
